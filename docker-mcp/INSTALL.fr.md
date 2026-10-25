@@ -40,7 +40,10 @@ docker run --rm curlimages/curl:8.17.0 -s -o /dev/null -w "%{http_code}\n" http:
 Récupère ce dossier `docker-mcp/` sur jTower (clone du fork), puis :
 
 ```powershell
-cd <chemin>\arrstack-mcp\docker-mcp
+# Le fichier doit être dans le dossier des catalogues Docker MCP, sinon :
+# "local file path must resolve within Docker MCP catalogs directory"
+Copy-Item <chemin>\arrstack-mcp\docker-mcp\arrstack*.yaml $HOME\.docker\mcp\catalogs\
+cd $HOME\.docker\mcp\catalogs
 docker mcp profile server add all --server file://./arrstack.yaml --server file://./arrstack-4k.yaml
 docker mcp profile server ls
 ```
