@@ -244,6 +244,11 @@ SERVICES: dict[str, Service] = {
     )
 }
 
+# Fork (Jefedi/arrstack-mcp): extra services live in arrstack_mcp/extras.
+from .extras.services import build_services as _build_extra_services  # noqa: E402
+
+SERVICES.update(_build_extra_services(Service, Setting, _url, _api_key))
+
 GROUP_ORDER = ("Movies & TV", "Downloads", "Media server", "Music & books", "Games", "Other")
 
 SERVICE_ALIASES = {alias: s.key for s in SERVICES.values() for alias in s.aliases}

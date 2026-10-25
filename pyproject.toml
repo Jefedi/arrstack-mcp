@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
-authors = [{ name = "CT4nk3r" }]
+authors = [{ name = "CT4nk3r" }, { name = "Jefedi (fork)" }]
 keywords = ["mcp", "model-context-protocol", "sonarr", "radarr", "jellyfin", "qbittorrent", "homelab"]
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -30,8 +30,8 @@ dependencies = [
 arrstack-mcp = "arrstack_mcp.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/ct4nk3r/arrstack-mcp"
-Issues = "https://github.com/ct4nk3r/arrstack-mcp/issues"
+Homepage = "https://github.com/Jefedi/arrstack-mcp"
+Issues = "https://github.com/Jefedi/arrstack-mcp/issues"
 
 [tool.hatch.version]
 path = "arrstack_mcp/__init__.py"

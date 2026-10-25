@@ -1,5 +1,11 @@
 # 🎬 arrstack-mcp
 
+> **Fork of [CT4nk3r/arrstack-mcp](https://github.com/CT4nk3r/arrstack-mcp)** (MIT). Added in `arrstack_mcp/extras/`:
+> Bazarr, Profilarr V2, cross-seed, Gluetun, Jellystat, Wizarr and Dispatcharr support; extra Sonarr/Radarr tools
+> (health, history, wanted, blocklist, commands, deletion guarded by `keep` tags); Seerr 4K requests and moderation;
+> Jellyfin sessions/users/search; qBittorrent categories, recheck and reannounce (`qbt_resume all` is refused).
+> Docker MCP Toolkit definitions and a French install guide live in [`docker-mcp/`](docker-mcp/INSTALL.fr.md).
+
 An [MCP](https://modelcontextprotocol.io/) server that gives AI assistants configurable access to homelab media and game services.
 
 Works with **Claude Desktop**, **Cursor**, **VS Code Copilot**, **OpenClaw**, and any other MCP-compatible client.
@@ -286,6 +292,21 @@ stop the server at startup with a list of every problem.
 | `BOOKSHELF_API_KEY` | If Bookshelf | Bookshelf API key (Settings → General) |
 | `SEERR_URL` | No | Seerr / Overseerr / Jellyseerr base URL (e.g. `http://localhost:5055`) |
 | `SEERR_API_KEY` | If Seerr | Seerr API key (Settings → General) |
+| `BAZARR_URL` | No | Bazarr base URL (e.g. `http://localhost:6767`) |
+| `BAZARR_API_KEY` | If Bazarr | Bazarr API key (Settings → General → Security) |
+| `PROFILARR_URL` | No | Profilarr base URL (e.g. `http://localhost:6868`) |
+| `PROFILARR_API_KEY` | If Profilarr | Profilarr API key (the container's PROFILARR_API_KEY, or Settings → Security → API keys) |
+| `CROSSSEED_URL` | No | cross-seed base URL (e.g. `http://localhost:2468`) |
+| `CROSSSEED_API_KEY` | If cross-seed | cross-seed API key (`cross-seed api-key` in the container) |
+| `GLUETUN_URL` | No | Gluetun control server URL (e.g. `http://localhost:8000`) |
+| `GLUETUN_API_KEY` | No | Gluetun API key (an `apikey` role in /gluetun/auth/config.toml or HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE) |
+| `JELLYSTAT_URL` | No | Jellystat base URL (e.g. `http://localhost:3000`) |
+| `JELLYSTAT_API_KEY` | If Jellystat | Jellystat API key (Settings → API Key) |
+| `WIZARR_URL` | No | Wizarr base URL (e.g. `http://localhost:5690`) |
+| `WIZARR_API_KEY` | If Wizarr | Wizarr API key (Settings → General → API Keys) |
+| `WIZARR_PUBLIC_URL` | No | Public Wizarr address used to build full invitation links (defaults to `WIZARR_URL`) |
+| `DISPATCHARR_URL` | No | Dispatcharr base URL (e.g. `http://localhost:9191`) |
+| `DISPATCHARR_API_KEY` | If Dispatcharr | Dispatcharr API key (user menu → API key (use an admin user)) |
 | `ARD_ENABLED` | No | Agentic Resource Discovery publishing: `auto` (default; on for HTTP transports), `true`, or `false` |
 | `ARD_PUBLIC_URL` | No | Public base URL clients reach this server at (e.g. `https://arrstack.example.com`); advertises an absolute connection endpoint inside the card. Leave blank if the server is private. |
 | `ARD_DOMAIN` | No | Publisher domain for the `urn:air` logical identifier (defaults to the host of `ARD_PUBLIC_URL`, else `localhost`) |

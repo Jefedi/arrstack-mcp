@@ -103,6 +103,11 @@ FINGERPRINTS: dict[str, Callable[[httpx.Client, str], bool]] = {
     "seerr": _looks_seerr,
 }
 
+# Fork (Jefedi/arrstack-mcp): fingerprints of the extra services.
+from .extras.discover_extra import extra_fingerprints as _extra_fingerprints  # noqa: E402
+
+FINGERPRINTS.update(_extra_fingerprints(_json))
+
 
 def candidates(service: config.Service) -> list[str]:
     """Base URLs to try for a service, most specific first."""

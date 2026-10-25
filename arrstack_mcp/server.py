@@ -2663,13 +2663,17 @@ def qbt_pause(torrent_hash: str) -> str:
 
 @mcp.tool()
 def qbt_resume(torrent_hash: str) -> str:
-    """Resume a torrent. Use 'all' to resume everything.
+    """Resume (start) torrents. Give explicit hashes: 'all' is refused in this fork,
+    because stopped torrents may be kept stopped on purpose (e.g. cross-seed / H&R).
 
     Args:
-        torrent_hash: Hash of the torrent, "hash1|hash2", or "all" to resume all.
+        torrent_hash: Hash of the torrent, or "hash1|hash2".
     """
     if not torrent_hash.strip():
         return "❌ No torrent hash given."
+    # Fork (Jefedi/arrstack-mcp): never resume everything at once.
+    if "all" in [h.strip().lower() for h in torrent_hash.split("|")]:
+        return "❌ 'all' is not allowed for resume. Give explicit torrent hashes."
     result = _qbt_action("/torrents/start", "/torrents/resume", {"hashes": torrent_hash.strip()})
     if _action_ok(result):
         return "▶️ Resumed."
@@ -3791,3 +3795,9 @@ def main():
         mcp.settings.port = args.port
         mcp.run(transport="streamable-http")
 
+
+# Fork (Jefedi/arrstack-mcp): register the extra tools defined in arrstack_mcp/extras
+# and hide their destructive ones too when ALLOW_DESTRUCTIVE=false.
+from .extras import load_extras as _load_extras  # noqa: E402
+
+DESTRUCTIVE_TOOLS = DESTRUCTIVE_TOOLS | _load_extras(mcp)

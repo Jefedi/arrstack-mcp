@@ -1,0 +1,127 @@
+name: arrstack
+title: Arr stack
+type: server
+image: ghcr.io/jefedi/arrstack-mcp:latest
+description: 'Stack média 1080p : Sonarr, Radarr, Prowlarr, Bazarr, qBittorrent, Gluetun, Profilarr, cross-seed, Jellyfin, Seerr, Jellystat, Wizarr, Dispatcharr'
+command:
+- --transport
+- stdio
+secrets:
+- name: arrstack.sonarr_api_key
+  env: SONARR_API_KEY
+- name: arrstack.radarr_api_key
+  env: RADARR_API_KEY
+- name: arrstack.prowlarr_api_key
+  env: PROWLARR_API_KEY
+- name: arrstack.bazarr_api_key
+  env: BAZARR_API_KEY
+- name: arrstack.qbt_user
+  env: QBT_USER
+- name: arrstack.qbt_pass
+  env: QBT_PASS
+- name: arrstack.gluetun_api_key
+  env: GLUETUN_API_KEY
+- name: arrstack.profilarr_api_key
+  env: PROFILARR_API_KEY
+- name: arrstack.crossseed_api_key
+  env: CROSSSEED_API_KEY
+- name: arrstack.jellyfin_api_key
+  env: JELLYFIN_API_KEY
+- name: arrstack.seerr_api_key
+  env: SEERR_API_KEY
+- name: arrstack.jellystat_api_key
+  env: JELLYSTAT_API_KEY
+- name: arrstack.wizarr_api_key
+  env: WIZARR_API_KEY
+- name: arrstack.dispatcharr_api_key
+  env: DISPATCHARR_API_KEY
+env:
+- name: ENABLED_SERVICES
+  value: '{{arrstack.enabled_services|or:sonarr,radarr,prowlarr,bazarr,qbittorrent,gluetun,profilarr,crossseed,jellyfin,seerr,jellystat,wizarr,dispatcharr}}'
+- name: ALLOW_DESTRUCTIVE
+  value: '{{arrstack.allow_destructive|or:false}}'
+- name: SETUP_UI
+  value: 'false'
+- name: LOG_LEVEL
+  value: WARNING
+- name: SONARR_URL
+  value: '{{arrstack.sonarr_url|or:http://10.10.10.15:8989}}'
+- name: RADARR_URL
+  value: '{{arrstack.radarr_url|or:http://10.10.10.15:7878}}'
+- name: PROWLARR_URL
+  value: '{{arrstack.prowlarr_url|or:http://10.10.10.15:9696}}'
+- name: BAZARR_URL
+  value: '{{arrstack.bazarr_url|or:http://10.10.10.15:6767}}'
+- name: QBT_URL
+  value: '{{arrstack.qbittorrent_url|or:http://10.10.10.15:8080}}'
+- name: GLUETUN_URL
+  value: '{{arrstack.gluetun_url|or:http://10.10.10.15:8000}}'
+- name: PROFILARR_URL
+  value: '{{arrstack.profilarr_url|or:http://10.10.10.15:6868}}'
+- name: CROSSSEED_URL
+  value: '{{arrstack.crossseed_url|or:http://10.10.10.15:2468}}'
+- name: JELLYFIN_URL
+  value: '{{arrstack.jellyfin_url|or:http://10.10.10.16:8096}}'
+- name: SEERR_URL
+  value: '{{arrstack.seerr_url|or:http://10.10.10.16:5055}}'
+- name: JELLYSTAT_URL
+  value: '{{arrstack.jellystat_url|or:http://10.10.10.16:3000}}'
+- name: WIZARR_URL
+  value: '{{arrstack.wizarr_url|or:http://10.10.10.16:5690}}'
+- name: DISPATCHARR_URL
+  value: '{{arrstack.dispatcharr_url|or:http://10.10.10.16:9191}}'
+- name: WIZARR_PUBLIC_URL
+  value: '{{arrstack.wizarr_public_url|or:}}'
+config:
+- name: arrstack
+  description: URLs de la stack (préremplies, à changer seulement si besoin)
+  type: object
+  properties:
+    enabled_services:
+      type: string
+      description: 'Services exposés (défaut : sonarr,radarr,prowlarr,bazarr,qbittorrent,gluetun,profilarr,crossseed,jellyfin,seerr,jellystat,wizarr,dispatcharr)'
+    allow_destructive:
+      type: string
+      description: 'true pour exposer les outils de suppression (défaut : false)'
+    sonarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:8989)'
+    radarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:7878)'
+    prowlarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:9696)'
+    bazarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:6767)'
+    qbittorrent_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:8080)'
+    gluetun_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:8000)'
+    profilarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:6868)'
+    crossseed_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:2468)'
+    jellyfin_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.16:8096)'
+    seerr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.16:5055)'
+    jellystat_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.16:3000)'
+    wizarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.16:5690)'
+    dispatcharr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.16:9191)'
+    wizarr_public_url:
+      type: string
+      description: Adresse publique de Wizarr pour les liens d'invitation (optionnel)

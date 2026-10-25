@@ -1,0 +1,50 @@
+name: arrstack-4k
+title: Arr stack 4K
+type: server
+image: ghcr.io/jefedi/arrstack-mcp:latest
+description: 'Tier 4K : Sonarr-4K, Radarr-4K, Bazarr-4K'
+command:
+- --transport
+- stdio
+secrets:
+- name: arrstack-4k.sonarr_api_key
+  env: SONARR_API_KEY
+- name: arrstack-4k.radarr_api_key
+  env: RADARR_API_KEY
+- name: arrstack-4k.bazarr_api_key
+  env: BAZARR_API_KEY
+env:
+- name: ENABLED_SERVICES
+  value: '{{arrstack-4k.enabled_services|or:sonarr,radarr,bazarr}}'
+- name: ALLOW_DESTRUCTIVE
+  value: '{{arrstack-4k.allow_destructive|or:false}}'
+- name: SETUP_UI
+  value: 'false'
+- name: LOG_LEVEL
+  value: WARNING
+- name: SONARR_URL
+  value: '{{arrstack-4k.sonarr_url|or:http://10.10.10.15:8990}}'
+- name: RADARR_URL
+  value: '{{arrstack-4k.radarr_url|or:http://10.10.10.15:7879}}'
+- name: BAZARR_URL
+  value: '{{arrstack-4k.bazarr_url|or:http://10.10.10.15:6768}}'
+config:
+- name: arrstack-4k
+  description: URLs du tier 4K (préremplies)
+  type: object
+  properties:
+    enabled_services:
+      type: string
+      description: 'Services exposés (défaut : sonarr,radarr,bazarr)'
+    allow_destructive:
+      type: string
+      description: 'true pour exposer les outils de suppression (défaut : false)'
+    sonarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:8990)'
+    radarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:7879)'
+    bazarr_url:
+      type: string
+      description: 'URL (défaut : http://10.10.10.15:6768)'

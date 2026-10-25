@@ -1,6 +1,6 @@
 name: Publish Docker image
 
-# Publishes ghcr.io/ct4nk3r/arrstack-mcp:
+# Publishes ghcr.io/jefedi/arrstack-mcp:
 #   release tag v1.2.3 -> :1.2.3, :1.2, :1, :latest
 #   push to main       -> :edge (bleeding edge, may break)
 # Pull requests only build (no push) so a broken Dockerfile is caught early.
@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  IMAGE: ghcr.io/ct4nk3r/arrstack-mcp
+  IMAGE: ghcr.io/jefedi/arrstack-mcp
 
 jobs:
   image:
