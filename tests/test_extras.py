@@ -225,3 +225,11 @@ class QbtResumeGuardTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EnvNewlineTests(unittest.TestCase):
+    def test_trailing_crlf_is_removed(self):
+        from arrstack_mcp import config
+        loaded = config.load({"SONARR_API_KEY": "abc123\r\n", "QBT_PASS": " p w \n"})
+        self.assertEqual(loaded.values["SONARR_API_KEY"], "abc123")
+        self.assertEqual(loaded.values["QBT_PASS"], " p w ")

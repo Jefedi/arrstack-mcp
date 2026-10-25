@@ -446,7 +446,10 @@ def load(environ: Mapping[str, str], path: str | None = None, missing_ok: bool =
         file_env = environ.get(f"{setting.env}_FILE", "").strip()
         value, source = setting.default, "default"
         if env_value.strip():
-            value, source = env_value, "environment"
+            # Fork: drop a trailing newline added by some secret stores / shells
+            # (e.g. PowerShell piping into `docker mcp secret set` appends CRLF),
+            # which httpx rejects as an illegal header value.
+            value, source = env_value.rstrip("\r\n"), "environment"
         elif file_env:
             content = _read_secret_file(file_env, f"{setting.env}_FILE", problems)
             if content is not None:
