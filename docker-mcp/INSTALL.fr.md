@@ -30,10 +30,10 @@ docker run --rm curlimages/curl:8.17.0 -s -o /dev/null -w "%{http_code}\n" http:
 
 ## Étape 2 — Points à vérifier sur la stack
 
-* **qBittorrent** (derrière Gluetun) : le port WebUI doit être publié par le conteneur `gluetun` (défaut supposé : `8080`). Si le port est différent, change `qbittorrent_url` à l'étape 4.
+* **qBittorrent** (derrière Gluetun) : le port WebUI doit être publié par le conteneur `gluetun` (publié en `8090` sur l’hôte). Si le port est différent, change `qbittorrent_url` à l'étape 4.
   qBittorrent refuse les requêtes dont l'en-tête Host n'est pas dans *Options → Web UI → Server domains* (champ `WebUI\ServerDomains`). Ajoute `10.10.10.15` à ce champ, ou garde `*`.
 * **Gluetun** : le serveur de contrôle (port `8000`) doit aussi être publié par `gluetun`. Il faut aussi un rôle `apikey` dans `/gluetun/auth/config.toml` (doc : https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/control-server.md). Si tu ne veux pas exposer Gluetun, retire `gluetun` de `enabled_services`.
-* Ports par défaut supposés : Prowlarr 9696, Seerr 5055, Jellyfin 8096, Jellystat 3000, Wizarr 5690, Dispatcharr 9191, Profilarr 6868, cross-seed 2468. Corrige à l'étape 4 ceux qui diffèrent.
+* Ports par défaut supposés : Prowlarr 9696, Seerr 5055, Jellyfin 8096, Jellystat 3500, Wizarr 5690, Dispatcharr 9191, Profilarr 6868, cross-seed 2468. Corrige à l'étape 4 ceux qui diffèrent.
 
 ## Étape 3 — Ajouter les serveurs au profil `all`
 

@@ -53,7 +53,7 @@ env:
 - name: BAZARR_URL
   value: '{{arrstack.bazarr_url|or:http://10.10.10.15:6767}}'
 - name: QBT_URL
-  value: '{{arrstack.qbittorrent_url|or:http://10.10.10.15:8080}}'
+  value: '{{arrstack.qbittorrent_url|or:http://10.10.10.15:8090}}'
 - name: GLUETUN_URL
   value: '{{arrstack.gluetun_url|or:http://10.10.10.15:8000}}'
 - name: PROFILARR_URL
@@ -65,7 +65,7 @@ env:
 - name: SEERR_URL
   value: '{{arrstack.seerr_url|or:http://10.10.10.16:5055}}'
 - name: JELLYSTAT_URL
-  value: '{{arrstack.jellystat_url|or:http://10.10.10.16:3000}}'
+  value: '{{arrstack.jellystat_url|or:http://10.10.10.16:3500}}'
 - name: WIZARR_URL
   value: '{{arrstack.wizarr_url|or:http://10.10.10.16:5690}}'
 - name: DISPATCHARR_URL
@@ -97,7 +97,7 @@ config:
       description: 'URL (défaut : http://10.10.10.15:6767)'
     qbittorrent_url:
       type: string
-      description: 'URL (défaut : http://10.10.10.15:8080)'
+      description: 'URL (défaut : http://10.10.10.15:8090)'
     gluetun_url:
       type: string
       description: 'URL (défaut : http://10.10.10.15:8000)'
@@ -115,7 +115,7 @@ config:
       description: 'URL (défaut : http://10.10.10.16:5055)'
     jellystat_url:
       type: string
-      description: 'URL (défaut : http://10.10.10.16:3000)'
+      description: 'URL (défaut : http://10.10.10.16:3500)'
     wizarr_url:
       type: string
       description: 'URL (défaut : http://10.10.10.16:5690)'
